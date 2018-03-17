@@ -15,12 +15,12 @@ timeStart = time.time()
 
 #count how many items were downloaded
 count = 0
-
+target="../../AU-exports"
 # If there isn't an export folder, make one!
-if not os.path.exists('AU-exports'):
-    os.makedirs('AU-exports')
-    os.makedirs('AU-exports/swf')
-    os.makedirs('AU-exports/xml')
+if not os.path.exists(target):
+    os.makedirs(target)
+    os.makedirs('{}/swf'.format(target))
+    os.makedirs('{}/xml'.format(target))
 
 # if there is an existing figure data file
 # log all existing items to ensure they wont
@@ -72,8 +72,8 @@ data = BeautifulSoup(open("figuredata.xml","r"),"html.parser")
 soup = BeautifulSoup(clothes,"html.parser")
 
 #Create figuredata
-t = open("AU-exports/xml/figuremap.xml","w+")
-p = open("AU-exports/xml/figuredata.xml", "w+")
+t = open("{}/xml/figuremap.xml".format(target),"w+")
+p = open("{}/xml/figuredata.xml".format(target), "w+")
 #Grab all the IDs of the associated items
 #this will allow us to get the proper 
 #figuredata code
@@ -95,7 +95,7 @@ for lib in soup.find_all("lib"):
             print('Downloading {}.swf'.format(file))
             t.write("{}\n".format(lib))
             url = '{}/{}.swf'.format(production, file)
-            urllib.request.urlretrieve(url, 'AU-exports/swf/{}.swf'.format(file))
+            urllib.request.urlretrieve(url, '{}/swf/{}.swf'.format(target,file))
             #add one to the download count, need to know this :P
             count = count + 1
 done = []
@@ -127,4 +127,4 @@ if count == 0:
 else:
     saying = "{} new items found!".format(count)
 print('Total elapsed time: {} seconds, {} sets generated \n{}\n'.format(timeTotal,count1,saying))
-print('Thank you for using AssetUpdater v0.1 by Synapse')
+print('Thank you for using AssetUpdater v0.1 by Zutery')
