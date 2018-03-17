@@ -9,7 +9,7 @@ import os
 
 
 #This may need to be generated from vars in the future.
-figureDataURL = "https://www.habbo.com/gamedata/figuredata/595de281707e45dbab45d698fb6e951941569571"
+figureDataURL = "https://www.habbo.com/gamedata/figuredata/0"
 #Begin the time for analytical reasons
 timeStart = time.time()
 
